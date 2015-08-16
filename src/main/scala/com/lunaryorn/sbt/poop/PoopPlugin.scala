@@ -14,7 +14,8 @@ object PoopPlugin extends AutoPlugin {
 
   override def projectSettings: Seq[Setting[_]] = Seq(
     compilerReporter in (Compile, compile) := {
-      Some(new CollectingReporter)
+      val log = streams.value.log
+      Some(new CollectingReporter(log))
     })
 
 }
@@ -26,17 +27,16 @@ case class EmojiProblem(severity: Severity, message: String, position: Position)
     val emoji = if (message.contains("illegal inheritance;") && message.contains("self-type")) {
       "poop".emoji.toString
     } else {
-      "cryingface".emoji.toString
+      "cry".emoji.toString
     }
 
-    s"$position:$severity:$emoji $message"
+    s" $emoji [$position] $message"
   }
 }
-class CollectingReporter extends xsbti.Reporter {
+class CollectingReporter(log: Logger) extends xsbti.Reporter {
   val buffer = collection.mutable.ArrayBuffer.empty[xsbti.Problem]
 
   def reset(): Unit = {
-    System.err.println(s"DEBUGME: Clearing errors: $buffer")
     buffer.clear()
   }
   def hasErrors: Boolean = buffer.exists(_.severity == Severity.Error)
@@ -47,8 +47,13 @@ class CollectingReporter extends xsbti.Reporter {
   /** Logs a message. */
   def log(pos: xsbti.Position, msg: String, sev: xsbti.Severity): Unit = {
     val problem = EmojiProblem(sev, msg, pos)
-    System.err.println(s"DEBUGME: Logging: $problem")
-    buffer.append(problem)
+    sev match {
+      case xsbti.Severity.Error =>
+        buffer.append(problem)
+        log.error(s"$problem")
+      case xsbti.Severity.Warn => log.warn(s"$problem")
+      case xsbti.Severity.Info => log.info(s"$problem")
+    }
   }
 
   /** Reports a comment. */
