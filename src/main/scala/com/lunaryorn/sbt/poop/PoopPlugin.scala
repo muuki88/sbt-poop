@@ -22,10 +22,9 @@ case class EmojiProblem(severity: Severity, message: String, position: Position)
   def category: String = null
   override def toString = {
     val emoji = if(message.contains("illegal inheritance;") && message.contains("self-type")) {
-      
+
     }
-    
-    
+
     s"$position:$severity:$emoji: $message"
   }
 }
