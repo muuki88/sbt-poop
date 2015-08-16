@@ -3,8 +3,10 @@ package sbt
 import sbt._
 import sbt.Keys._
 import sbt.plugins.JvmPlugin
-import xsbti.Severity
-import xsbti.Position
+import xsbti.{ Severity, Position }
+
+import com.typesafe.emoji.ShortCodes.Implicits._
+import com.typesafe.emoji.ShortCodes.Defaults._
 
 object PoopPlugin extends AutoPlugin {
 
@@ -13,8 +15,7 @@ object PoopPlugin extends AutoPlugin {
   override def projectSettings: Seq[Setting[_]] = Seq(
     compilerReporter in (Compile, compile) := {
       Some(new CollectingReporter)
-    }
-  )
+    })
 
 }
 
@@ -22,13 +23,13 @@ case class EmojiProblem(severity: Severity, message: String, position: Position)
   def category: String = null
 
   override def toString = {
-    val emoji = if(message.contains("illegal inheritance;") && message.contains("self-type")) {
-      "💩"
+    val emoji = if (message.contains("illegal inheritance;") && message.contains("self-type")) {
+      "poop".emoji.toString
     } else {
-      "😢"
+      "cryingface".emoji.toString
     }
 
-    s"$position:$severity:$emoji: $message"
+    s"$position:$severity:$emoji $message"
   }
 }
 class CollectingReporter extends xsbti.Reporter {
