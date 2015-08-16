@@ -20,9 +20,12 @@ object PoopPlugin extends AutoPlugin {
 
 case class EmojiProblem(severity: Severity, message: String, position: Position) extends xsbti.Problem {
   def category: String = null
+
   override def toString = {
     val emoji = if(message.contains("illegal inheritance;") && message.contains("self-type")) {
-
+      "💩"
+    } else {
+      "😢"
     }
 
     s"$position:$severity:$emoji: $message"
