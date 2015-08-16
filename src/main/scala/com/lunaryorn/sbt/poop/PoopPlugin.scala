@@ -18,6 +18,17 @@ object PoopPlugin extends AutoPlugin {
 
 }
 
+case class EmojiProblem(severity: Severity, message: String, position: Position) extends xsbti.Problem {
+  def category: String = null
+  override def toString = {
+    val emoji = if(message.contains("illegal inheritance;") && message.contains("self-type")) {
+      
+    }
+    
+    
+    s"$position:$severity:$emoji: $message"
+  }
+}
 class CollectingReporter extends xsbti.Reporter {
   val buffer = collection.mutable.ArrayBuffer.empty[xsbti.Problem]
 
@@ -32,15 +43,9 @@ class CollectingReporter extends xsbti.Reporter {
 
   /** Logs a message. */
   def log(pos: xsbti.Position, msg: String, sev: xsbti.Severity): Unit = {
-    object MyProblem extends xsbti.Problem {
-      def category: String = null
-      def severity: Severity = sev
-      def message: String = msg
-      def position: Position = pos
-      override def toString = s"$position:$severity: $message"
-    }
-    System.err.println(s"DEBUGME: Logging: $MyProblem")
-    buffer.append(MyProblem)
+    val problem = EmojiProblem(sev, msg, pos)
+    System.err.println(s"DEBUGME: Logging: $problem")
+    buffer.append(problem)
   }
 
   /** Reports a comment. */

@@ -2,15 +2,18 @@ package test
 
 object Main extends App {
 
-  println("Hello, World"
+  println("Hello, World")
+
 
 }
+
+class ComponentRegistry extends ComponentBastiImpl with ComponentMukiImpl
 
 trait Basti
-trait ComponentBasti {
+trait ComponentBasti { self : ComponentMuki =>
   val basti: Basti
 }
-trait ComponentBastiImpl {
+trait ComponentBastiImpl { self : ComponentMuki =>
   val basti = new Basti { 
   
   }
