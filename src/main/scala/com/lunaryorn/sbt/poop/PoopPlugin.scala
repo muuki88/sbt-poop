@@ -16,7 +16,8 @@ object PoopPlugin extends AutoPlugin {
   override def projectSettings: Seq[Setting[_]] = Seq(
     compilerReporter in (Compile, compile) := {
       val log = streams.value.log
-      Some(new EmojiReporter(log))
+      val src = sourceDirectory.value
+      Some(new EmojiReporter(log, src))
     })
 
 }
