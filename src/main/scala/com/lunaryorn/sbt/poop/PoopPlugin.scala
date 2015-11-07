@@ -11,6 +11,8 @@ import com.lunaryorn.sbt.poop.EmojiReporter
  */
 object PoopPlugin extends AutoPlugin {
 
+  override def trigger = AllRequirements
+  
   override def requires = JvmPlugin
 
   override def projectSettings: Seq[Setting[_]] = Seq(
