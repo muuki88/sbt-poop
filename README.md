@@ -8,7 +8,7 @@ Making compiler warnings more emoji!
 
 In your `plugins.sbt` add
 
-```
+```scala
 // adding the repo
 resolvers += Resolver.url(
   "team-boris",
