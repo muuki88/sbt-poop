@@ -1,5 +1,5 @@
 name := "sbt-poop"
-organization := "de.teamboris"
+organization := "de.team-boris"
 
 sbtPlugin := true
 
