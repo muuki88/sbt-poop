@@ -1,4 +1,5 @@
 [![Download](https://api.bintray.com/packages/team-boris/sbt-plugins/sbt-poop/images/download.svg) ](https://bintray.com/team-boris/sbt-plugins/sbt-poop/_latestVersion)
+[![Build Status](https://travis-ci.org/team-boris/sbt-poop.svg?branch=master)](https://travis-ci.org/team-boris/sbt-poop)
 
 SBT 💩
 =====
