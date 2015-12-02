@@ -1,10 +1,12 @@
-[ ![Download](https://api.bintray.com/packages/team-boris/sbt-plugins/sbt-poop/images/download.svg) ](https://bintray.com/team-boris/sbt-plugins/sbt-poop/_latestVersion)
+[![Download](https://api.bintray.com/packages/team-boris/sbt-plugins/sbt-poop/images/download.svg) ](https://bintray.com/team-boris/sbt-plugins/sbt-poop/_latestVersion)
 
-## SBT Poop
+SBT 💩
+=====
 
-Making compiler warnings more emoji! 
+Emoji for your SBT! 😍
 
-## Enable
+Setup
+-----
 
 In your `plugins.sbt` add
 
@@ -18,4 +20,3 @@ resolvers += Resolver.url(
 
 addSbtPlugin("de.teamboris" % "sbt-poop" % "0.1.1")
 ```
-
