@@ -6,3 +6,8 @@ script:
   # Ensure that scalariform was clean
   - git --no-pager diff --exit-code
   - sbt test
+# Cache dependencies
+cache:
+ directories:
+ - $HOME/.sbt
+ - $HOME/.ivy2
