@@ -47,7 +47,11 @@ case class EmojiProblem(severity: Severity, message: String, position: Position)
   }
 }
 
-class EmojiReporter(log: Logger, srcDir: File) extends Reporter {
+class EmojiReporter(
+    log: Logger,
+    srcDir: File,
+    relativeFileNames: Boolean = false
+) extends Reporter {
   val buffer = collection.mutable.ArrayBuffer.empty[Problem]
 
   def reset(): Unit = {
@@ -75,11 +79,19 @@ class EmojiReporter(log: Logger, srcDir: File) extends Reporter {
     log.debug(s"[COMMENT] $pos $msg")
   }
 
+  private def processFile(file: File): Option[File] = {
+    if (relativeFileNames) {
+      file relativeTo srcDir
+    } else {
+      Some(file)
+    }
+  }
+
   private def log(problem: EmojiProblem, level: Level.Value) {
     val pos = problem.position
 
     val src = pos.sourceFile()
-      .flatMap(_ relativeTo srcDir)
+      .flatMap(processFile(_))
       .map(_.getPath)
 
     val srcInfo = Seq(
@@ -98,4 +110,3 @@ class EmojiReporter(log: Logger, srcDir: File) extends Reporter {
 
   override def toString = "EmojiReporter"
 }
-
