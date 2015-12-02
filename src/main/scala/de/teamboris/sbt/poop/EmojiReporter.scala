@@ -1,4 +1,4 @@
-package com.lunaryorn.sbt.poop
+package de.teamboris.sbt.poop
 
 import sbt._
 import xsbti.{ Severity, Position, Reporter, Problem }

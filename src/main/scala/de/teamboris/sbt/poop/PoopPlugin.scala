@@ -4,15 +4,15 @@ package sbt
 import sbt._
 import sbt.Keys._
 import sbt.plugins.JvmPlugin
-import com.lunaryorn.sbt.poop.EmojiReporter
+import de.teamboris.sbt.poop.EmojiReporter
 
 /**
- * 
+ *
  */
 object PoopPlugin extends AutoPlugin {
 
   override def trigger = AllRequirements
-  
+
   override def requires = JvmPlugin
 
   override def projectSettings: Seq[Setting[_]] = Seq(
