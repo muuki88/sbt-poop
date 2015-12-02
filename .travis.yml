@@ -1,1 +1,6 @@
 language: scala
+script:
+  - sbt compile
+  # Ensure that scalariform was clean
+  - git --no-pager diff --exit-code
+  - sbt test
