@@ -14,7 +14,7 @@ case class EmojiProblem(severity: Severity, message: String, position: Position)
       "poop".emoji
     } else if (message contains "is already defined as trait") {
       "unamused".emoji
-    } else if(message contains "unclosed string literal") {
+    } else if (message contains "unclosed string literal") {
       "grimacing".emoji
     } else {
       "cry".emoji
@@ -64,7 +64,8 @@ class EmojiReporter(log: Logger, srcDir: File) extends Reporter {
     val srcInfo = Seq(
       src,
       pos.line.map(_.toString),
-      pos.offset.map(_.toString)).flatten mkString ":"
+      pos.offset.map(_.toString)
+    ).flatten mkString ":"
 
     log.log(level, s"$srcInfo ${problem.category} ${problem.message}")
     log.log(level, pos.lineContent)

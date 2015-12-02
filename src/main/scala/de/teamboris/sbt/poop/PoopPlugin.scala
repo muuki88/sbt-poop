@@ -20,6 +20,7 @@ object PoopPlugin extends AutoPlugin {
       val log = streams.value.log
       val src = sourceDirectory.value
       Some(new EmojiReporter(log, src))
-    })
+    }
+  )
 
 }
