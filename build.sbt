@@ -32,3 +32,10 @@ licenses += ("MIT", url("http://opensource.org/licenses/MIT"))
 
 // release
 releasePublishArtifactsAction := PgpKeys.publishSigned.value
+
+// site settings
+site.settings
+site.includeScaladoc()
+site.sphinxSupport()
+ghpages.settings
+git.remoteRepo := "git@github.com:team-boris/sbt-poop.git"
