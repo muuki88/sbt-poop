@@ -32,3 +32,4 @@ licenses += ("MIT", url("http://opensource.org/licenses/MIT"))
 
 // release
 releasePublishArtifactsAction := PgpKeys.publishSigned.value
+publishMavenStyle := true
