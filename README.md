@@ -8,6 +8,8 @@ SBT 💩
 
 Emoji for your SBT! 😍
 
+![](https://raw.githubusercontent.com/team-boris/sbt-poop/master/screenshot.png)
+
 Setup
 -----
 
