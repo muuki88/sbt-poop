@@ -3,6 +3,7 @@ homepage := Some(url("http://github.com/team-boris/sbt-poop"))
 organization := "de.team-boris"
 organizationName := "Team Boris"
 organizationHomepage := Some(url("http://www.team-boris.de"))
+licenses += ("MIT", url("http://opensource.org/licenses/MIT"))
 
 pomExtra := <scm>
   <url>git@github.com:team-boris/sbt-poop.git</url>
@@ -21,15 +22,13 @@ pomExtra := <scm>
   </developer>
   </developers>
 
-sbtPlugin := true
-
 libraryDependencies += "com.typesafe" %% "emoji" % "1.0.0"
+
+sbtPlugin := true
 
 // bintray settings
 bintrayOrganization := Some("team-boris")
 bintrayPackageLabels := Seq("hipster", "sbt", "emoji", "scala")
-licenses += ("MIT", url("http://opensource.org/licenses/MIT"))
 
 // release
 releasePublishArtifactsAction := PgpKeys.publishSigned.value
-publishMavenStyle := true
