@@ -32,3 +32,5 @@ bintrayPackageLabels := Seq("hipster", "sbt", "emoji", "scala")
 
 // release
 releasePublishArtifactsAction := PgpKeys.publishSigned.value
+releaseTagComment    := s"Release ${(version in ThisBuild).value}"
+releaseCommitMessage := s"Bump version to ${(version in ThisBuild).value}"
