@@ -18,28 +18,19 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-package de.teamboris.sbt.poop
+// in order to access private compilerReporter task
+package sbt
 
-import sbt._
-import sbt.plugins.JvmPlugin
+object PoopTasks {
 
-object Imports {
-  object PoopKeys {
-    val relativeFileNames = settingKey[Boolean](
-      "Whether to output relative file names or not")
-  }
-}
+  import sbt.Keys._
+  import de.teamboris.sbt.poop.{EmojiReporter,Imports}, Imports._
 
-object PoopPlugin extends AutoPlugin {
-
-  val autoImport = Imports
-
-  import Imports._
-
-  override def trigger = AllRequirements
-
-  override def requires = JvmPlugin
-
-  override def projectSettings: Seq[Setting[_]] =
-    Seq(PoopKeys.relativeFileNames := true) ++ PoopTasks.poopSettings
+  val poopSettings: Seq[Setting[_]] = Seq(
+    compilerReporter in (Compile, compile) := {
+      val log = streams.value.log
+      val src = sourceDirectory.value
+      Some(new EmojiReporter(log, src, PoopKeys.relativeFileNames.value))
+    }
+  )
 }
