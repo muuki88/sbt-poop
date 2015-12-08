@@ -26,26 +26,29 @@ import sbt.Keys._
 import sbt.plugins.JvmPlugin
 import de.teamboris.sbt.poop.EmojiReporter
 
+object Imports {
+  object PoopKeys {
+    val relativeFileNames = settingKey[Boolean](
+      "Whether to output relative file names or not")
+  }
+}
+
 object PoopPlugin extends AutoPlugin {
 
-  object autoImport {
-    val poopRelativeNames = settingKey[Boolean](
-      "Whether to output relative file names or not"
-    )
-  }
+  val autoImport = Imports
 
-  import autoImport._
+  import Imports._
 
   override def trigger = AllRequirements
 
   override def requires = JvmPlugin
 
   override def projectSettings: Seq[Setting[_]] = Seq(
-    poopRelativeNames := true,
+    PoopKeys.relativeFileNames := true,
     compilerReporter in (Compile, compile) := {
       val log = streams.value.log
       val src = sourceDirectory.value
-      Some(new EmojiReporter(log, src, poopRelativeNames.value))
+      Some(new EmojiReporter(log, src, PoopKeys.relativeFileNames.value))
     }
   )
 
