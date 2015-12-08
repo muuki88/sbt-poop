@@ -21,5 +21,5 @@ resolvers += Resolver.url(
   Resolver.ivyStylePatterns
  )
 
-addSbtPlugin("de.teamboris" % "sbt-poop" % "0.1.1")
+addSbtPlugin("de.teamboris" % "sbt-poop" % "0.1.5")
 ```
